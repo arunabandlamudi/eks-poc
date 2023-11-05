@@ -1,4 +1,4 @@
-resource "aws_security_group" "allow_tls" {
+/*resource "aws_security_group" "allow_tls" {
   name        = "allow_tls"
   description = "Allow TLS inbound traffic"
   vpc_id      = aws_vpc.main.id
@@ -22,3 +22,5 @@ resource "aws_security_group" "allow_tls" {
     Name = "allow_tls"
   }
 }
+
+*/

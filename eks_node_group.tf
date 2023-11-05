@@ -1,4 +1,4 @@
-resource "aws_instance" "kubectl-server" {
+/*resource "aws_instance" "kubectl-server" {
   ami                         = "ami-063e1495af50e6fd5"
   key_name                    = "terraform-key"
   instance_type               = "t2.micro"
@@ -22,7 +22,7 @@ resource "aws_eks_node_group" "node-grp" {
   instance_types  = ["t2.small"]
 
   remote_access {
-    ec2_ssh_key               = "ubuntusingapore"
+    ec2_ssh_key               = "terraform-key"
     source_security_group_ids = [aws_security_group.allow_tls.id]
   }
 
@@ -46,3 +46,5 @@ resource "aws_eks_node_group" "node-grp" {
     #aws_subnet.pub_sub2,
   ]
 }
+
+*/
