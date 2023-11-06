@@ -1,5 +1,5 @@
 resource "aws_eks_cluster" "eks" {
-  name     = "POC-eks"
+  name     = "EKS-POC"
   role_arn = aws_iam_role.master.arn
 
 
