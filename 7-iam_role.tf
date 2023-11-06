@@ -32,6 +32,11 @@ resource "aws_iam_role_policy_attachment" "AmazonEKSVPCResourceController" {
   role       = aws_iam_role.master.name
 }
 
+resource "aws_iam_role_policy_attachment" "AmazonOpenSearchServiceFullAccessMaster" {
+  policy_arn = "arn:aws:iam::aws:policy/AmazonOpenSearchServiceFullAccess"
+  role       = aws_iam_role.master.name
+}
+
 resource "aws_iam_role" "worker" {
   name = "ed-eks-worker"
 
@@ -56,7 +61,10 @@ resource "aws_iam_role_policy_attachment" "AmazonEKSFargateProfile" {
   role       = aws_iam_role.worker.name
 }
 
-
+resource "aws_iam_role_policy_attachment" "AmazonOpenSearchServiceFullAccessWorker" {
+  policy_arn = "arn:aws:iam::aws:policy/AmazonOpenSearchServiceFullAccess"
+  role       = aws_iam_role.worker.name
+}
 
 /*
 resource "aws_iam_policy" "autoscaler" {
