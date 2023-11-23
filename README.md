@@ -1,6 +1,6 @@
 # eks
 
-aws eks update-kubeconfig --name POC-eks --region us-east-1 --profile terraform #update kube config file
+aws eks update-kubeconfig --name POC-eks --region ap-south-1 --profile terraform #update kube config file
 
 
 kubectl patch deployment coredns -n kube-system --type json -p='[{"op": "remove", "path": "/spec/template/metadata/annotations/eks.amazonaws.com~1compute-type"}]' # patch the coredns in the kubesystem namespace
