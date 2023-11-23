@@ -2,32 +2,53 @@
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: tomcat-namespace
+  name: nginx-namespace
 
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: index-html-configmap.yaml
+  namespace: default
+data:
+  index.html: |
+    <html>
+    <h1>Welcome! This is Deployment one, acting as the home 🏡 decor website for poc. </h1>
+    </html
+    
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name:  tomcat-deployment-nautilus
-  namespace: tomcat-namespace
+  name:  index-html-configmap.yaml
+  namespace: nginx-namespace
   labels:
     name: webdep
-    app: demo
+    app: nginx
 spec:
   replicas: 1
   selector:
     matchLabels:
       name: webpod
-      app: demo
+      app: nginx
   template:
     metadata:
       name: webpod
       labels:
         name: webpod
-        app: demo
+        app: nginx
     spec:
       containers:
-        - name: tomcat-container
-          image: gcr.io/kodekloud/centos-ssh-enabled:tomcat
+        - name: nginx
+          image: nginx:latest
           ports:
-            - containerPort: 8080
+            - containerPort: 80
+            volumeMounts : 
+                - name : nginx-index-file
+                  mountpath : /usr/share/nginx/html/index.html
+                  subpath : index.html
+      volumes:
+        - name: nginx-index-file
+          configMap:
+            name: index-html-configmap.yaml
+      
