@@ -9,13 +9,15 @@ kubectl apply -f k8s/deployment.yml # create deployment
 
 kubectl apply -f k8s/service.yml #create service
 
-kubectl get pods -n kube-system #check the pods
+kubectl get pods -n nginx-namespace #check the pods
 
-kubectl get svc -n kube-system #check the services
+kubectl get svc -n nginx-namespace #check the services
 
-kubectl exec -n kube-system <podname> -it -- /bin/bash #login into the pod
+kubectl get all  # Great! We see 1 deployments with 1 pods each with our NGINX service up and running!
 
-sudo echo '<h1>Welcome to POC </h1>' | sudo tee /var/www/html/index.html #created a static html page
+curl localhost:30052
+
+Welcome! This is Deployment one, acting as the home 🏡 decor website for poc.
 
 Access the page using LB url.
 
@@ -30,7 +32,7 @@ sudo apt-get update && sudo apt-get install logstash
 vim /etc/logstash/conf.d/apachelog.conf
 input {
   file {
-    path => "/var/log/apache2/access. log"
+    path => "/var/log/apache2/access.log"
     start_position => "beginning"
   }
 }
