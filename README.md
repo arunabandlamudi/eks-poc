@@ -32,12 +32,16 @@ access them from browser
 --------------------------------------------------------
 
 Install logstash in pod which is running eks:
-Link: https://www.elastic.co/guide/en/logstash/current/installing-logstash.html
+Reference Link: https://www.elastic.co/guide/en/logstash/current/installing-logstash.html
 
 1. sudo apt-get install wget
+
 2. wget -qO - https://artifacts.elastic.co/GPG-KEY-elasticsearch | sudo gpg --dearmor -o /usr/share/keyrings/elastic-keyring.gpg
+
 3. sudo apt-get install apt-transport-https
+
 4. echo "deb [signed-by=/usr/share/keyrings/elastic-keyring.gpg] https://artifacts.elastic.co/packages/8.x/apt stable main" | sudo tee -a /etc/apt/sources.list.d/elastic-8.x.list
+
 5.sudo apt-get update && sudo apt-get install logstash
 
 6. create a logstash configuration file:
