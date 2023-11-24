@@ -5,50 +5,24 @@ metadata:
   name: nginx-namespace
 
 ---
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: index-html-configmap.yaml
-  namespace: default
-data:
-  index.html: |
-    <html>
-    <h1>Welcome! This is Deployment one, acting as the home 🏡 decor website for poc. </h1>
-    </html
-    
----
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name:  index-html-configmap.yaml
-  namespace: nginx-namespace
+  name: my-nginx
   labels:
-    name: webdep
     app: nginx
 spec:
   replicas: 1
   selector:
     matchLabels:
-      name: webpod
       app: nginx
   template:
     metadata:
-      name: webpod
       labels:
-        name: webpod
         app: nginx
     spec:
       containers:
-        - name: nginx
-          image: nginx:latest
-          ports:
-            - containerPort: 80
-            volumeMounts : 
-                - name : nginx-index-file
-                  mountpath : /usr/share/nginx/html/index.html
-                  subpath : index.html
-      volumes:
-        - name: nginx-index-file
-          configMap:
-            name: index-html-configmap.yaml
-      
+      - name: nginx
+        image: nginx:1.14.2
+        ports:
+        - containerPort: 80
