@@ -45,7 +45,9 @@ Reference Link: https://www.elastic.co/guide/en/logstash/current/installing-logs
 5.sudo apt-get update && sudo apt-get install logstash
 
 6. create a logstash configuration file:
-vim  /etc/logstash/conf.d/nginx.conf
+   
+  vim  /etc/logstash/conf.d/nginx.conf
+
 input {
   file {
     path => "/var/log/nginx/access.log"
