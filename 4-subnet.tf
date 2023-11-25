@@ -21,9 +21,9 @@ resource "aws_subnet" "public-2" {
 }
 
 resource "aws_subnet" "private-1" {
-  vpc_id                  = aws_vpc.main.id
-  cidr_block              = "10.0.10.0/24"
-  availability_zone       = "ap-south-1a"
+  vpc_id            = aws_vpc.main.id
+  cidr_block        = "10.0.10.0/24"
+  availability_zone = "ap-south-1a"
 
 
   tags = {
@@ -32,9 +32,9 @@ resource "aws_subnet" "private-1" {
 }
 
 resource "aws_subnet" "private-2" {
-  vpc_id                  = aws_vpc.main.id
-  cidr_block              = "10.0.11.0/24"
-  availability_zone       = "ap-south-1b"
+  vpc_id            = aws_vpc.main.id
+  cidr_block        = "10.0.11.0/24"
+  availability_zone = "ap-south-1b"
 
 
   tags = {
