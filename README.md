@@ -47,7 +47,6 @@ Reference Link: https://www.elastic.co/guide/en/logstash/current/installing-logs
 6. create a logstash configuration file:
    
   vim  /etc/logstash/conf.d/nginx.conf
-
 input {
   file {
     path => "/var/log/nginx/access.log"
@@ -56,19 +55,21 @@ input {
 }
 
 filter {
-    grok {
-  date {
+  grok {
     match => [ "timestamp" , "dd/MMM/yyyy:HH:mm:ss Z" ]
+    date {
+      match => [ "timestamp" , "dd/MMM/yyyy:HH:mm:ss Z" ]
+    }
   }
 }
 
 output {
   elasticsearch {
-    hosts => ["AWS opensearch endpoint"]
-    user => 'AWS opensearch username'
-    password => 'password'
+    hosts => ["https://search-nginx-opensearch-5e34e35h5z4kaygz3q44x4lcsy.us-east-2.es.amazonaws.com"]
+    user => 'Admin@123'
+    password => 'Admin@123'
   }
-  stdout { codec => nginx_logs }
+  stdout { codec => rubydebug }
 }
 
 
