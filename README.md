@@ -71,7 +71,7 @@ stdin { codec => rubydebug }
 }
 
 
-7. cd /usr/share
+7. cd /usr/share/logstash
 run this cmd inside pod where you installed logstash:
 sudo bin/logstash -f /etc/logstash/conf.d/nginx.conf
 
