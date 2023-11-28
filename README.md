@@ -61,9 +61,9 @@ match => [ "timestamp" , "dd/MMM/yyyy:HH:mm:ss Z" ]
 }
 output {  
 elasticsearch {  
-hosts => ["https://search-nginx-opensearch-5e34e35h5z4kaygz3q44x4lcsy.us-east-2.es.amazonaws.com"]  
-user => 'Admin@123'  
-password => 'Admin@123'  
+hosts => ["***"]  
+user => '****'  
+password => '****'  
 }  
 stdout { codec => nginx_logs }  
 stdin { codec => rubydebug }
