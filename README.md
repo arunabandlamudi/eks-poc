@@ -47,29 +47,27 @@ Reference Link: https://www.elastic.co/guide/en/logstash/current/installing-logs
 6. create a logstash configuration file:
    
   vim  /etc/logstash/conf.d/nginx.conf
-input {
-  file {
-    path => "/var/log/nginx/access.log"
-    start_position => "beginning"
-  }
+input {  
+file {  
+path => "/var/log/nginx/access.log"  
+start_position => "beginning"  
+}  
 }
-
-filter {
-  grok {
-    match => [ "timestamp" , "dd/MMM/yyyy:HH:mm:ss Z" ]
-    date {
-      match => [ "timestamp" , "dd/MMM/yyyy:HH:mm:ss Z" ]
-    }
-  }
+filter {  
+grok {  
+date {  
+match => [ "timestamp" , "dd/MMM/yyyy:HH:mm:ss Z" ]  
+}  
 }
-
-output {
-  elasticsearch {
-    hosts => ["https://search-nginx-opensearch-5e34e35h5z4kaygz3q44x4lcsy.us-east-2.es.amazonaws.com"]
-    user => 'Admin@123'
-    password => 'Admin@123'
-  }
-  stdout { codec => rubydebug }
+output {  
+elasticsearch {  
+hosts => ["https://search-nginx-opensearch-5e34e35h5z4kaygz3q44x4lcsy.us-east-2.es.amazonaws.com"]  
+user => 'Admin@123'  
+password => 'Admin@123'  
+}  
+stdout { codec => nginx_logs }  
+stdin { codec => rubydebug }
+}
 }
 
 
